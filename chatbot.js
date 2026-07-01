@@ -189,7 +189,7 @@
 
     const BACKEND_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
       ? "http://localhost:8000"
-      : "https://portfolio-backend-anjani.onrender.com"; // Change to your deployed backend URL
+      : "https://porfolio-backend-48yy.onrender.com"; // Change to your deployed backend URL
 
     try {
       // Attempt connection to the local Python FastAPI agent
@@ -212,15 +212,15 @@
       // Create an empty bot message bubble that we will stream into
       const messageDiv = document.createElement("div");
       messageDiv.className = "chat-message bot";
-      
+
       const avatar = document.createElement("div");
       avatar.className = "msg-avatar";
       avatar.textContent = "🤖";
-      
+
       const bubble = document.createElement("div");
       bubble.className = "msg-bubble";
       bubble.innerHTML = ""; // Starts empty
-      
+
       messageDiv.appendChild(avatar);
       messageDiv.appendChild(bubble);
       chatMessages.appendChild(messageDiv);
@@ -270,7 +270,7 @@
 
     } catch (err) {
       console.warn("Backend server offline. Falling back to offline client-side chatbot...", err);
-      
+
       // Offline fallback: Use local keyword matching
       setTimeout(() => {
         hideTyping();

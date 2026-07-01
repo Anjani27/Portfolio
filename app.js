@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Fetch & render GitHub projects dynamically ----
   const BACKEND_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:8000"
-    : "https://portfolio-backend-anjani.onrender.com"; // Change to your deployed backend URL
+    : "https://porfolio-backend-48yy.onrender.com"; // Change to your deployed backend URL
 
   async function fetchGitHubProjects() {
     const grid = document.getElementById("projectsGrid");
