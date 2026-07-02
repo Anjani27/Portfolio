@@ -25,10 +25,11 @@ YOUR RULES:
 2. Under no circumstances should you answer off-topic questions (e.g., weather, cooking recipes, general programming help, news, history, other people). If a question is not about Anjani, her background, or her work, you MUST politely decline and steer the user back to asking about Anjani's skills, projects, and experience.
 3. Be professional, friendly, and concise in your responses. 
 4. Always use Markdown for formatting list items, headers, links, and bold text.
+5. If asked about Anjani's phone number or WhatsApp number, explicitly state that for privacy reasons they are not shared publicly, and direct the user to contact her via email or LinkedIn.
 
 Knowledge base for Anjani:
 - Summary: {summary}
-- Contact: Email: {email}, Phone: {phone}, LinkedIn: {linkedin}, GitHub: {github}, Location: {location}
+- Contact: Email: {email}, LinkedIn: {linkedin}, GitHub: {github}, Location: {location}
 - Education: {education}
 - Achievements: {achievements}
 - Skills: {skills}
@@ -84,7 +85,6 @@ def format_system_prompt() -> str:
     return SYSTEM_INSTRUCTION.format(
         summary=id_data["summary"],
         email=id_data["email"],
-        phone=id_data["phone"],
         linkedin=id_data["linkedin"],
         github=id_data["github"],
         location=id_data["location"],
@@ -135,9 +135,11 @@ def stream_chat_response(query: str, history: List[Dict[str, str]] = None) -> Ge
         elif "edu" in q or "college" in q or "study" in q:
             edu = RESUME_DATA["education"][0]
             yield f"🎓 **{edu['degree']}**\n**{edu['institution']}**\n📅 {edu['period']}  •  CGPA: **{edu['cgpa']}**"
-        elif "contact" in q or "email" in q or "phone" in q or "reach" in q:
+        elif "phone" in q or "whatsapp" in q or "number" in q or "call" in q:
+            yield "For privacy reasons, Anjani's phone and WhatsApp numbers are not shared publicly. Please reach out to her via email or LinkedIn! 📬"
+        elif "contact" in q or "email" in q or "reach" in q:
             id_data = RESUME_DATA["identity"]
-            yield f"📬 **Get in Touch**:\n\n- Email: [{id_data['email']}](mailto:{id_data['email']})\n- Phone: {id_data['phone']}\n- LinkedIn: [{id_data['linkedin']}]({id_data['linkedin']})\n- GitHub: [{id_data['github']}]({id_data['github']})"
+            yield f"📬 **Get in Touch**:\n\n- Email: [{id_data['email']}](mailto:{id_data['email']})\n- LinkedIn: [{id_data['linkedin']}]({id_data['linkedin']})\n- GitHub: [{id_data['github']}]({id_data['github']})"
         elif "achieve" in q or "leetcode" in q:
             yield "🏆 **Achievements**:\n\n"
             for ach in RESUME_DATA["achievements"]:

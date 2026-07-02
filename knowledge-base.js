@@ -9,7 +9,6 @@ const KNOWLEDGE_BASE = {
   identity: {
     name: "Anjani Kushwaha",
     location: "Lucknow, India",
-    phone: "+91-7860711908",
     email: "anjkus27@gmail.com",
     linkedin: "https://www.linkedin.com/in/anjani-kushwaha-245a42210",
     github: "https://github.com/Anjani27",
@@ -292,10 +291,17 @@ const INTENTS = [
   },
   {
     name: "contact",
-    keywords: ["contact", "email", "phone", "reach", "connect", "linkedin", "github", "hire", "mail", "number"],
+    keywords: ["contact", "email", "reach", "connect", "linkedin", "github", "hire", "mail"],
     handler: () => {
       const d = KNOWLEDGE_BASE.identity;
-      return `### 📬 Get in Touch\n\n- 📧 Email: [${d.email}](mailto:${d.email})\n- 📱 Phone: ${d.phone}\n- 💼 [LinkedIn](${d.linkedin})\n- 🐙 [GitHub](${d.github})`;
+      return `### 📬 Get in Touch\n\n- 📧 Email: [${d.email}](mailto:${d.email})\n- 💼 [LinkedIn](${d.linkedin})\n- 🐙 [GitHub](${d.github})`;
+    },
+  },
+  {
+    name: "phone",
+    keywords: ["phone", "whatsapp", "call", "mobile", "number", "wa.me", "cell", "contact number"],
+    handler: () => {
+      return `For privacy reasons, Anjani's phone and WhatsApp numbers are not shared publicly. Please reach out to her via email or LinkedIn! 📬`;
     },
   },
   {

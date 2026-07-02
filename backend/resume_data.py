@@ -4,7 +4,6 @@ RESUME_DATA = {
     "identity": {
         "name": "Anjani Kushwaha",
         "location": "Lucknow, India",
-        "phone": "+91-7860711908",
         "email": "anjkus27@gmail.com",
         "linkedin": "https://www.linkedin.com/in/anjani-kushwaha-245a42210",
         "github": "https://github.com/Anjani27",
@@ -19,7 +18,7 @@ RESUME_DATA = {
         "programming": ["Python", "SQL", "C++", "Java"],
         "generative_ai_and_ml": [
             "LLMs", "Retrieval-Augmented Generation (RAG)", "Multi-Agent Systems",
-            "LangGraph", "LangChain", "FAISS", "Transformers", "NLP", "RLHF",
+            "LangGraph", "LangChain", "FAISS", "ChromaDB", "Transformers", "NLP", "RLHF",
             "Prompt Engineering", "Fine-tuning", "Deep Learning", "Embeddings",
             "PyTorch", "TensorFlow", "scikit-learn", "Evaluation Frameworks",
             "Model Interpretability", "Hugging Face"
@@ -32,16 +31,6 @@ RESUME_DATA = {
         ]
     },
     "experience": [
-        {
-            "role": "Freelance Software Engineer & AI Consultant",
-            "company": "Freelance",
-            "location": "Remote",
-            "period": "Mar 2024 – Present",
-            "bullets": [
-                "Developed and deployed full-stack web applications and backend microservices using Java, Spring Boot, and PostgreSQL; designed clean REST APIs and optimized database access layer.",
-                "Engineered custom RAG systems, web scrapers (including LinkedIn job scrapers), and LLM pipelines using Python, FastAPI, and LangChain for various freelance clients."
-            ]
-        },
         {
             "role": "Software Development Engineer I (Contract)",
             "company": "Amazon via Aditi Consulting",
@@ -106,7 +95,7 @@ RESUME_DATA = {
         },
         {
             "title": "AI-Powered Portfolio (Full-Stack)",
-            "period": "Jun 2026 – Present",
+            "period": "Mar 2026 – Mar 2026",
             "tech": ["FastAPI", "Python", "LangChain", "Groq (LLaMA)", "HTML/CSS", "JavaScript"],
             "liveDemo": "https://anjani27.github.io/Porfolio/",
             "bullets": [

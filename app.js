@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!grid) return;
 
     // Featured projects we want to keep static (or avoid duplicating)
-    const featuredTitles = ["promptcompiler", "interactive ai assistant", "linkedin_job_tracker"];
+    const featuredTitles = ["promptcompiler", "interactive ai assistant", "linkedin-job-scraper", "remote-mcp-server", "youtubechatbot"];
 
     // First try the local Python FastAPI backend
     let projects = [];
@@ -363,14 +363,14 @@ document.addEventListener("DOMContentLoaded", () => {
         tags.add("Python");
       }
 
-      return Array.from(tags).slice(0, 4); // Limit to 4 tags
+      return Array.from(tags).slice(0, 8); // Limit to 8 tags
     }
 
-    // Keep the first 2 static cards (PromptCompiler & RAG Assistant)
+    // Keep the first 5 static cards (detailed featured projects)
     // and remove any other placeholder cards if present
     const cards = Array.from(grid.querySelectorAll(".project-card"));
-    if (cards.length > 2) {
-      for (let i = 2; i < cards.length; i++) {
+    if (cards.length > 5) {
+      for (let i = 5; i < cards.length; i++) {
         cards[i].remove();
       }
     }
@@ -425,4 +425,55 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   fetchGitHubProjects();
+
+  // ---- Contact form async submit (Formspree) ----
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById("btn-contact-submit");
+      const note = contactForm.querySelector(".form-note");
+
+      // Show loading state
+      btn.disabled = true;
+      btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        style="animation: spin 1s linear infinite">
+        <path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…`;
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          btn.innerHTML = `✅ Message Sent!`;
+          btn.style.background = "rgba(16,185,129,0.2)";
+          btn.style.borderColor = "var(--accent-emerald)";
+          btn.style.color = "var(--accent-emerald)";
+          note.textContent = "Thanks! Anjani will get back to you within 24 hours.";
+          note.style.color = "var(--accent-emerald)";
+        } else {
+          throw new Error("Form submission failed");
+        }
+      } catch {
+        btn.innerHTML = `❌ Failed — try emailing directly`;
+        btn.style.color = "#f87171";
+        note.textContent = "Something went wrong. Email anjkus27@gmail.com directly.";
+        note.style.color = "#f87171";
+      } finally {
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9l20-7z"/></svg> Send Message`;
+          btn.removeAttribute("style");
+          note.textContent = "Powered by Formspree · Usually responds within 24 hours";
+          note.removeAttribute("style");
+        }, 5000);
+      }
+    });
+  }
 });
