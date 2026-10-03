@@ -89,7 +89,7 @@ RESUME_DATA = {
     "featured_projects": [
         {
             "title": "PromptCompiler – AI-Powered Prompt Engineering Platform",
-            "period": "Jun 2026 – Present",
+            "period": "Jun 2026 – Sep 2026",
             "tech": ["LangGraph", "FastAPI", "Docker", "Groq (LLaMA)", "Supabase", "Next.js"],
             "liveDemo": "https://prompt-compiler-frontend.vercel.app/",
             "bullets": [
