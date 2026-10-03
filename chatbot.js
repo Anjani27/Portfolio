@@ -14,6 +14,8 @@
   const chatSendBtn = document.getElementById("chatSendBtn");
   const chatSuggestions = document.getElementById("chatSuggestions");
   const chatTooltip = document.getElementById("chatTooltip");
+  const chatZoomBtn = document.getElementById("chatZoomBtn");
+  const chatCloseBtn = document.getElementById("chatCloseBtn");
 
   let isOpen = false;
   let hasGreeted = false;
@@ -166,7 +168,7 @@
       return intent.handler(query);
     }
 
-    return FALLBACK_RESPONSE;
+    return FALLBACK_RESPONSES[Math.floor(Math.random() * FALLBACK_RESPONSES.length)];
   }
 
   // ---- Message history tracking ----
@@ -274,7 +276,8 @@
       // Offline fallback: Use local keyword matching
       setTimeout(() => {
         hideTyping();
-        const responseText = generateResponse(text);
+        const prefix = "*(Note: My backend server is currently offline, but I can still help!)*\n\n";
+        const responseText = prefix + generateResponse(text);
         addMessage(responseText, "bot");
         messageHistory.push({ role: "assistant", content: responseText });
 
@@ -360,6 +363,20 @@
     e.stopPropagation();
     toggleChat();
   });
+
+  if (chatZoomBtn) {
+    chatZoomBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      chatPanel.classList.toggle("zoomed");
+    });
+  }
+
+  if (chatCloseBtn) {
+    chatCloseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (isOpen) toggleChat();
+    });
+  }
 
   chatSendBtn.addEventListener("click", (e) => {
     e.stopPropagation();
