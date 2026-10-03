@@ -72,7 +72,7 @@ def get_llm():
         # Using LLaMA 3.3 70B via Groq for high quality and speed
         return ChatGroq(
             temperature=0.2,
-            model_name="llama-3.3-70b-versatile",
+            model_name="llama3-70b-8192",
             groq_api_key=GROQ_API_KEY
         )
     except Exception as e:
