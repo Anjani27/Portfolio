@@ -17,22 +17,62 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScroll = currentScroll;
   });
 
-  // ---- Mobile menu toggle ----
+  // ---- Sidebar Navigation ----
   const navToggle = document.getElementById("navToggle");
   const navLinks = document.getElementById("navLinks");
 
+  // Open by default on desktop
+  const isMobile = window.innerWidth <= 1024;
+  if (!isMobile) {
+    navToggle.classList.add("active");
+    navbar.classList.add("open");
+    document.body.classList.add("sidebar-open");
+  }
+
   navToggle.addEventListener("click", () => {
     navToggle.classList.toggle("active");
-    navLinks.classList.toggle("open");
+    navbar.classList.toggle("open");
+    document.body.classList.toggle("sidebar-open");
   });
 
   // Close menu on link click
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navToggle.classList.remove("active");
-      navLinks.classList.remove("open");
+      navbar.classList.remove("open");
+      document.body.classList.remove("sidebar-open");
     });
   });
+
+  // ---- Theme Toggle ----
+  const themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    const sunIcon = themeToggle.querySelector(".sun-icon");
+    const moonIcon = themeToggle.querySelector(".moon-icon");
+    
+    // Check for saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      document.body.classList.add("light-mode");
+      sunIcon.style.display = "none";
+      moonIcon.style.display = "block";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      const isLightMode = document.body.classList.contains("light-mode");
+      
+      if (isLightMode) {
+        localStorage.setItem("theme", "light");
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
+      } else {
+        localStorage.setItem("theme", "dark");
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
+      }
+    });
+  }
 
   // ---- Typing effect for hero tagline ----
   const typingEl = document.getElementById("typingText");

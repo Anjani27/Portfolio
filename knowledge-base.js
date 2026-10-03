@@ -8,7 +8,7 @@ const KNOWLEDGE_BASE = {
   /* -------- identity -------- */
   identity: {
     name: "Anjani Kushwaha",
-    location: "Lucknow, India",
+    location: "Bangalore, India",
     email: "anjkus27@gmail.com",
     linkedin: "https://www.linkedin.com/in/anjani-kushwaha-245a42210",
     github: "https://github.com/Anjani27",
@@ -66,12 +66,17 @@ const KNOWLEDGE_BASE = {
   experience: [
     {
       role: "Software Development Engineer I (Contract)",
-      company: "Amazon via Aditi Consulting",
+      company: "Amazon",
       location: "Remote",
       period: "Jun 2025 – Feb 2026",
       bullets: [
-        "Designed and executed RLHF-based model evaluation workflows across 500+ LLM outputs, applying structured performance metrics to identify reasoning failures and improve model accuracy, robustness, and instruction adherence.",
-        "Designed benchmarking and evaluation frameworks to assess response quality, instruction adherence, and hallucination patterns; findings fed directly into model training cycles.",
+        "Worked on LLM evaluation and benchmarking workflows, reviewing 500+ code samples across Java, Python, AWS, and Linux.",
+        "Evaluated model-generated responses against structured rubrics covering correctness, instruction following, formatting, completeness, and code quality.",
+        "Developed and maintained evaluation workflows and pipelines to identify recurring model failure patterns and generate actionable feedback for model improvement.",
+        "Created challenging prompts and edge cases to test model behavior across coding and software-engineering scenarios.",
+        "Provided structured feedback and task-level guidance supporting SFT/RLHF-style model improvement workflows.",
+        "Collaborated with senior team members to analyze evaluation results and improve the consistency and reliability of model assessments.",
+        "Focus: LLM Evaluation · Benchmarking · Python · Java · AWS · Linux · RLHF · Prompt Engineering",
       ],
     },
     {
@@ -80,28 +85,37 @@ const KNOWLEDGE_BASE = {
       location: "Remote",
       period: "Sep 2024 – Apr 2025",
       bullets: [
-        "Executed large-scale LLM evaluation and validation workflows across Python, SQL, and ML tasks; evaluated 300+ model responses per week to improve output quality and instruction adherence.",
-        "Contributed to prompt optimization workflows through systematic error analysis, improving model consistency across multi-step reasoning tasks.",
+        "Reviewed and evaluated 300+ Python/SQL/ML code implementations per week for correctness, robustness, and adherence to requirements.",
+        "Analyzed LLM-generated and developer-submitted solutions across Python, SQL, algorithms, and machine-learning tasks.",
+        "Identified edge cases, logical errors, inefficient implementations, and failures against task specifications.",
+        "Provided structured technical feedback to improve solution quality and consistency across evaluation workflows.",
+        "Worked with evaluation guidelines and quality criteria to assess code behavior across diverse technical problems.",
+        "Focus: Python · SQL · Machine Learning · Code Evaluation · LLM Evaluation · Technical Review",
       ],
     },
     {
       role: "Data Analyst Intern",
-      company: "Quation Solutions Pvt. Ltd",
-      location: "Lucknow, India",
-      period: "Jun 2024 – Aug 2024",
+      company: "Quation Solutions",
+      location: "Bangalore, India",
+      period: "Jun 2024 – Sep 2024",
       bullets: [
-        "Conducted exploratory data analysis (EDA), demand forecasting, and CPG analysis using Python and SQL across 3+ product categories; surfaced actionable insights for business stakeholders.",
-        "Built Power BI dashboards adopted by the analytics team to support weekly data-driven decision-making.",
+        "Worked on data analysis and reporting tasks involving data cleaning, transformation, and validation.",
+        "Used SQL and Python to analyze datasets and identify patterns, inconsistencies, and actionable insights.",
+        "Supported data-driven reporting and analysis by preparing structured datasets and validating analytical outputs.",
+        "Focus: Python · SQL · Data Analysis · Data Cleaning · Data Validation",
       ],
     },
     {
-      role: "Software Engineer Intern",
-      company: "Microsoft India (R&D) Pvt. Ltd",
+      role: "Software Development Engineer Intern",
+      company: "Microsoft India",
       location: "Hyderabad, India",
       period: "Jul 2023 – Aug 2023",
       bullets: [
-        "Designed and developed a COGS Calculator to forecast cost impact of new features over a 3-year horizon; used by the team to evaluate 10+ feature proposals.",
-        "Implemented automated monitoring and alerting workflows to track cost deviations post-deployment, reducing manual review effort by ~30%.",
+        "Worked with the COGS Calculator project as part of the COGS Data & Analytics team.",
+        "Contributed to software development and data-related workflows supporting cost-analysis functionality.",
+        "Worked with engineering and data concepts to understand requirements, implement changes, and validate application behavior.",
+        "Gained experience working in a large-scale engineering environment with structured development and review processes.",
+        "Focus: Software Development · Data Analytics · Engineering Workflows · Microsoft",
       ],
     },
   ],
@@ -311,8 +325,22 @@ const INTENTS = [
       return `You can view all of Anjani's professional details right here! Just ask me about her **skills**, **experience**, **projects**, **education**, or **achievements**. 📄`;
     },
   },
+  {
+    name: "opinion",
+    keywords: ["rate", "good", "great", "best", "how is she", "opinion", "worth", "recommend", "hire", "fit", "suitable", "dumb", "smart", "capable", "talented", "bad", "weak"],
+    handler: (query) => {
+      const q = query.toLowerCase();
+      if (q.includes("dumb") || q.includes("bad") || q.includes("not good") || q.includes("weak")) {
+        return `Haha, not even close! 😄 Anjani is a highly skilled AI/ML Engineer with hands-on experience at **Amazon** and **Microsoft**, building production LLM systems, RAG pipelines, and multi-agent architectures.\n\nShe has solved **600+ LeetCode** problems and evaluated **500+ LLM outputs** at Amazon. Definitely not dumb — quite the opposite! 💪`;
+      }
+      return `Honestly? I'd rate Anjani very highly as an AI engineer! 🌟\n\nWith deep hands-on expertise in **LLMs, RAG, LangGraph, Multi-Agent Systems** and experience at top companies like **Amazon** and **Microsoft**, she's a very strong fit for AI/ML or Backend Engineering roles. 💪`;
+    },
+  },
 ];
 
-// Fallback response for off-topic questions
-const FALLBACK_RESPONSE =
-  "I appreciate the curiosity! 😊 However, I'm designed to answer questions **only about Anjani Kushwaha** — her skills, experience, projects, education, and achievements.\n\nTry asking something like:\n- *\"What are Anjani's skills?\"*\n- *\"Tell me about her work at Amazon\"*\n- *\"What projects has she built?\"*";
+// Fallback responses for off-topic questions
+const FALLBACK_RESPONSES = [
+  "I appreciate the curiosity! 😊 However, I'm designed to answer questions **only about Anjani Kushwaha** — her skills, experience, projects, education, and achievements.\n\nTry asking something like:\n- *\"What are Anjani's skills?\"*\n- *\"Tell me about her work at Amazon\"*\n- *\"What projects has she built?\"*",
+  "That's an interesting question, but my knowledge is focused specifically on Anjani's professional background.\n\nWould you like to know about her **experience**, **education**, or **projects**?",
+  "I'm afraid I can't answer that. 😅 I'm an AI assistant programmed exclusively to share details about Anjani Kushwaha's career and skills.\n\nFeel free to ask me about her **tech stack** or where she has worked!"
+];
